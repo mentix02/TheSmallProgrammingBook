@@ -63,6 +63,6 @@ void stats() {
 }
 
 int main() {
-	stats();
+	interactive();
 	return 0;
 }
