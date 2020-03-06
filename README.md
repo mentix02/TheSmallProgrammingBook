@@ -10,3 +10,14 @@ low level concepts are written using C++ in the form of code embdedded in Markdo
 the appropriate (read: full) source code in their own directories.
 
 The final book will be a PDF of all the notebooks and Markdown files.
+
+## Installation
+
+To get the latest copy of the Notebooks and PDFs, clone this repository, install the Python requirements and run `jupyter notebook` in the root directory. This is hihgly recommended since GitHub does not render Jupyter's LaTeX nicely and has a lot of errors that aren't faced during development.
+
+```sh
+$ git clone https://github.com/mentix02/TheSmallProgrammingBook
+$ cd TheSmallProgrammingBook
+$ pip install -r requirements.txt
+$ jupyter notebook
+```
