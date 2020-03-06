@@ -1,4 +1,7 @@
 # The Small Programming Book
+
+![SmallBook](imgs/SmallBook.jpg)
+
 A small book written by me (that is still in development).
 
 I like to read about and implement niche data structures and obscure algorithms but since I
