@@ -24,3 +24,7 @@ $ cd TheSmallProgrammingBook
 $ pip install -r requirements.txt
 $ jupyter notebook
 ```
+
+## Credits
++ [Cover art by bongkarn thanyakij from Pexels](https://www.pexels.com/photo/notebook-and-pen-beside-red-mug-on-gray-surface-3774057/)
++ [Wikipedia for LaTeX formulae and other resources](https://wikipedia.org)
