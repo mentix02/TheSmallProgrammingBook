@@ -19,16 +19,16 @@ auto adder(T... args) {
 }
 ```
 
-As talked about above, the arity of a function can differ - even be variable. But can a function be _0-ary_? Yes. And in fact, a **nullary** example for Mathematics can be a constant! Like $ \pi $. Now that we're comfortable with the topic of arity, let's write some code with functions of different arity.
+As talked about above, the arity of a function can differ - even be variable. But can a function be _0-ary_? Yes. And in fact, a **nullary** example for Mathematics can be a constant! Like $\pi$. Now that we're comfortable with the topic of arity, let's write some code with functions of different arity.
 
 ## Unary Functions (1-ary)
 
 1. Logical NOT
     $$
-    \begin{align}
+    \begin{aligned}
     \text{NOT } n &= - n - 1 \\[8pt]
     &= -(n + 1)
-    \end{align}
+    \end{aligned}
     $$
     
 
@@ -42,11 +42,11 @@ As talked about above, the arity of a function can differ - even be variable. Bu
 
 2. Square Root (using Newton's Method)
     $$
-    \begin{align}
+    \begin{aligned}
     f(x) &= x^2 - n \\[6pt]
     f'(x) &= 2x \\
     x_{i+1} &= x_i - \frac{f(x_i)}{f'(x_i)}
-    \end{align} \\[4pt]
+    \end{aligned} \\[4pt]
     \text{Taking } i = 9 \text{ and approximating initial first value using brute force, we can find } \sqrt{n} \text{ easily.}
     $$
 
@@ -64,10 +64,10 @@ As talked about above, the arity of a function can differ - even be variable. Bu
 3. Sine
 
 $$
-\begin{align}
+\begin{aligned}
 \sin(x) &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots \\[8pt]
 & = \sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1} \\[8pt]
-\end{align}
+\end{aligned}
 $$
 
 
@@ -104,51 +104,51 @@ auto sin(const float x) {
 
     ```c++
     auto AND(const int x, const int y) {
-    	long result = 0;
-    	int upper = std::floor(std::log2(x)) + 1;
-    	for (unsigned n = 0; n < upper; ++n) {
-    		long two_power_n = std::pow(2, n);
-        long x_2n_mod_2  = (long)(std::floor(x / two_power_n)) % 2 );
-        long y_2n_mod_2  = (long)(std::floor(y / two_power_n)) % 2 );
-    		result += two_power_n * x_2n_mod_2 * y_2n_mod_2;
-    	}
-    	return result;
+      long result = 0;
+      int upper = std::floor(std::log2(x)) + 1;
+        for (unsigned n = 0; n < upper; ++n) {
+          long two_power_n = std::pow(2, n);
+          long x_2n_mod_2  = (long)(std::floor(x / two_power_n)) % 2 );
+          long y_2n_mod_2  = (long)(std::floor(y / two_power_n)) % 2 );
+          result += two_power_n * x_2n_mod_2 * y_2n_mod_2;
+      }
+      return result;
     }
     ```
 
 2. Logical OR
     $$
-    x \text{ OR } y = \sum_{n=0}^{\lfloor \log_2{x} \rfloor} 2^{n} \left( \left[ \left( \left\lfloor \frac{x}{2^n} \right\rfloor \Mod 2 \right) + \left( \left\lfloor \frac{y}{2^n} \right\rfloor \Mod 2 \right) + \left( \left\lfloor \frac{x}{2^n} \right\rfloor \Mod 2 \right)\left( \left\lfloor \frac{y}{2^n} \right\rfloor \Mod 2 \right) \right] \Mod 2 \right)
+    \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+    x \text{ OR } y = \\
+    \sum_{n=0}^{\lfloor \log_2{x} \rfloor} 2^{n} \left( \left[ \left( \left\lfloor \frac{x}{2^n} \right\rfloor \Mod 2 \right) + \left( \left\lfloor \frac{y}{2^n} \right\rfloor \Mod 2 \right) + \left( \left\lfloor \frac{x}{2^n} \right\rfloor \Mod 2 \right)\left( \left\lfloor \frac{y}{2^n} \right\rfloor \Mod 2 \right) \right] \Mod 2 \right)
     $$
-    
-
     ```c++
-    auto OR(int x, int y) {
-    	long result = 0;
-    	if (y > x)
-    		std::swap(x, y);
-    	int upper = std::floor(std::log2(x)) + 1;
-    	for (unsigned n = 0; n < upper; ++n) {
-    		long two_power_n = std::pow(2, n);
-    		long x_2n_mod_2 = (long)(std::floor(x / two_power_n)) % 2;
-    		long y_2n_mod_2 = (long)(std::floor(y / two_power_n)) % 2;
-    		auto prod = x_2n_mod_2 * y_2n_mod_2;
-    		result += two_power_n * (( x_2n_mod_2 + y_2n_mod_2 + prod ) % 2);
-    	}
-    	return result;
-    }
-    ```
+    long OR(int x, int y) {
+	  long result = 0;
+	  if (y > x)
+	    std::swap(x, y);
+	  int upper = std::floor(std::log2(x)) + 1;
+	  for (unsigned n = 0; n < upper; ++n) {
+	    long two_power_n = std::pow(2, n);
+	    long x_2n_mod_2 = (long)(std::floor(x / two_power_n)) % 2;
+	    long y_2n_mod_2 = (long)(std::floor(y / two_power_n)) % 2;
+	    auto prod = x_2n_mod_2 * y_2n_mod_2;
+	    result += two_power_n * (( x_2n_mod_2 + y_2n_mod_2 + prod ) % 2);
+	  }
+	  return result;
+	}
+	```
 
 3. Distance From Origin
     $$
-    \begin{align}
+    \begin{aligned}
     P &= (x_1, y_1) \\[3pt]
     Q &= (x_2, y_2) \\[3pt]
     d(P, Q) &= \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \\[3pt]
-    &= \sqrt{(0 - x_1)^2 + (0 - y_1)^2} & \left[ \text{when Q is } (0,0)\right]  \\[3pt]
+    &= \sqrt{(0 - x_1)^2 + (0 - y_1)^2} & \left[ \text{when Q } = (0,0)\right]  \\[3pt]
     &= \sqrt{x_1^2 + y_1^2} \\[3pt]
     &= \sqrt{x^2 + y^2}
-    \end{align}
+    \end{aligned}
     $$
 
     ```c++
@@ -161,10 +161,10 @@ auto sin(const float x) {
 
 4. Logarithm
     $$
-    \begin{align}
+    \begin{aligned}
     b^y &= x \\[2pt]
     \log_b{(x)} &= y
-    \end{align}
+    \end{aligned}
     $$
 
     ```c++
@@ -181,5 +181,3 @@ auto sin(const float x) {
       return log2(x) / log2(b);
     }
     ```
-
-    
