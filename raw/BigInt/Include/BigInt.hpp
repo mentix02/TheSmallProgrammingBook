@@ -1,5 +1,8 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef BIGINT_H
+#define BIGINT_H
+
+#include <string>
+#include <iostream>
 
 class BigInt {
 

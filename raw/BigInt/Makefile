@@ -1,6 +1,6 @@
 CC = clang++
 
 make:
-	${CC} -Wall -I Include -c src/*
+	${CC} --std=c++14 -Wall -I Include -c src/*
 	mv *.o build
-	${CC} -o run tests.cpp -I Include build/*
+	${CC} --std=c++14 -o run tests.cpp -I Include build/*
